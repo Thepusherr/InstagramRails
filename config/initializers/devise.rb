@@ -1,5 +1,19 @@
 # frozen_string_literal: true
 
+class TurboFailureApp < Devise::FailureApp
+  def respond
+    if request_format == :turbo_stream
+      redirect
+    else
+      super
+    end
+  end
+
+  def skip_format?
+    %w(html turbo_stream */*).include? request_format.to_s
+  end
+end
+
 # Assuming you have not yet modified this file, each configuration option below
 # is set to its default value. Note that some are commented out while others
 # are not: uncommented lines are intended to protect your configuration from
@@ -14,11 +28,13 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = 'af83b08fe196f7055f729e07c703935eeee44be67bee8a53e5464d813bd6b7742d3329d914b9e7f24ebe1bdf486714affc464f9906a84f7a73ea25623f5146f2'
+  # config.secret_key = '18ddc07816633cea76d0f64a86f964a01a05147ce3540ad5ec3106f955f19469a145370aac3a75b4bdea7dff34e237f2a70ce9f43fc48341bc8db62c7bf33d84'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
   # config.parent_controller = 'DeviseController'
+
+  config.parent_controller = 'ApplicationController'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -126,7 +142,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '09b7d8c528922b398b68c6d99b8587c76902003c69dce8a8c0bb820462991aa29c47388dd66be881372a163e69818e9d3c8ad41c5d4214034eedda959223c3fb'
+  # config.pepper = '535adf7941047617419482095bee80c4a8c4c1e45072c108859102e07f3a192b226976563645dcd29b8e0428f2db1b4b97e6f25f76ef6255263e96dade1bf1ba'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -265,6 +281,8 @@ Devise.setup do |config|
   # The "*/*" below is required to match Internet Explorer requests.
   # config.navigational_formats = ['*/*', :html, :turbo_stream]
 
+  config.navigational_formats = ['*/*', :html, :turbo_stream]
+
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
 
@@ -281,6 +299,8 @@ Devise.setup do |config|
   #   manager.intercept_401 = false
   #   manager.default_strategies(scope: :user).unshift :some_external_strategy
   # end
+
+
 
   # ==> Mountable engine configurations
   # When using Devise inside an engine, let's call it `MyEngine`, and this engine
