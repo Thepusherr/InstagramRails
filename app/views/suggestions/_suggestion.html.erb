@@ -1,0 +1,12 @@
+<div class="d-flex justify-content-between">
+  <div class="d-flex">
+    <%= image_tag "default_user_dark.png", class: "img-thumbnail rounded-circle", style: "width: 2.5rem" %>
+    <div class="d-flex flex-column mx-2">
+      <small class="fw-bold" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 10rem">User1</small>
+      <small class="text-muted" style="font-size:.7rem; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;  max-width: 10rem;">Suggested for you by Instagram as he followed you before</small>
+    </div>
+  </div>
+  <%= link_to root_path, style: "text-decoration:none" do %>
+    <small class="fw-bold text-primary">Follow</small>
+  <% end %>
+</div>
