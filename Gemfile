@@ -76,3 +76,5 @@ end
 gem "devise", "~> 4.9"
 
 gem "font-awesome-sass", "~> 6.4.0"
+
+gem 'activestorage-validator'
