@@ -3,25 +3,32 @@
     <div class="card-header bg-white">
       <div class="d-flex justify-content-between">
         <div>
-          <% if post.user.profile_pic.attached? %>
-            <%= image_tag post.user.profile_pic, class: "img-thumbnail rounded-circle", style: "width: 10%" %>
-          <%else %>
-            <%= image_tag "default_user_dark.png", class: "img-thumbnail rounded-circle", style: "width: 10%" %>
+          <%= link_to post.user, class: "a-decoration-none" do %>
+            <% if post.user.profile_pic.attached? %>
+              <%= image_tag post.user.profile_pic, class: "img-thumbnail rounded-circle", style: "width: 10%" %>
+            <%else %>
+              <%= image_tag "default_user_dark.png", class: "img-thumbnail rounded-circle", style: "width: 10%" %>
+            <% end %>
           <% end %>
-          <span class="fw-bold mx-2"><%= post.user.username %></span>
+          <%= link_to post.user, class: "a-decoration-none" do %>
+            <span class="fw-bold mx-2"><%= post.user.username %></span>
+          <% end %>
         </div>
 
         <div>
-          <div class="dropdown">
-            <a class="text-dark fs-4" style="text-decoration:none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              ...
-            </a>
+          <% if current_user == post.user %>>
+            <div class="dropdown">
+              <a class="text-dark fs-4" style="text-decoration:none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                ...
+              </a>
 
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Edit Post</a></li>
-              <li><a class="dropdown-item" href="#">Delete Post</a></li>
-            </ul>
-          </div>
+              <ul class="dropdown-menu">
+                <li>
+                  <%= button_to 'Delete post', post, method: :delete, class: "dropdown-item" %>
+                </li>
+              </ul>
+            </div>
+          <% end %>
         </div>
 
       </div>
