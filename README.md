@@ -1,3 +1,4 @@
+git <<<<<<< HEAD
 # README
 
 This README would normally document whatever steps are necessary to get the
@@ -22,3 +23,7 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+=======
+# InstagramRails
+Instagram clone(rails 7+)
+>>>>>>> 1a4b4d6b6523fca5a598021b4fdef43d783e5d1a
