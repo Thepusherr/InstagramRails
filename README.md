@@ -5,16 +5,11 @@
 * System dependencies
 
 * Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
+  git clone git@github.com:Thepusherr/InstagramRails.git
+  rvm use 2.7.1
+  bundle install
+  rails db:create && rails db:migrate
+  rails s
 
 # InstagramRails
 Instagram clone(rails 7+)
